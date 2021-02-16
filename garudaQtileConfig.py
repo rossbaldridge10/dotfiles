@@ -256,7 +256,7 @@ layout_theme = init_layout_theme()
 
 
 layouts = [
-    layout.MonadTall(margin=16, border_width=2, border_focus="#ff0000", border_normal="#ffd700"),
+    layout.MonadTall(margin=8, border_width=2, border_focus="#ff0000", border_normal="#ffd700"),
     layout.MonadWide(margin=16, border_width=2, border_focus="#ff0000", border_normal="#ffd700"),
     layout.Matrix(**layout_theme),
     layout.Bsp(**layout_theme),
@@ -295,13 +295,14 @@ def init_colors():
 
 
 colors = init_colors()
-
+			#blue	green	  black	   lblue	lgreen
+mColors = ['192678','197025','ffffff','4661a3','44ad57']
 
 # WIDGETS FOR THE BAR
 
 def init_widgets_defaults():
-    return dict(font="Noto Sans",
-                fontsize = 12,
+    return dict(font="Noto Sans Bold",
+                fontsize = 9,
                 padding = 2,
                 background=colors[1])
 
@@ -325,7 +326,7 @@ def init_widgets_list():
                         background = colors[1]
                         ),              #
                widget.Image(
-                       filename = "~/.config/qtile/icons/garuda-red.png",
+                       filename = "~/.config/qtile/icons/garuda-white.png",
                        iconsize = 9,
                        background = colors[1],
                        mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn('jgmenu_run')}
@@ -344,8 +345,8 @@ def init_widgets_list():
                         padding_x = 5,
                         borderwidth = 0,
                         disable_drag = False,
-                        active = "#ffff00",
-                        inactive = colors[5],
+                        active = "#44ad57",
+                        inactive = mColors[3],
                         rounded = False,
                         highlight_method = "block",
                         this_current_screen_border = colors[8],
@@ -359,36 +360,37 @@ def init_widgets_list():
                 #       padding = 0,
                 #       fontsize = 46
                 #       ),
-               widget.WindowName(font="Fantasque Sans Mono",
+               widget.WindowName(font="Noto Sans Bold",
                         fontsize = 16,
-                        foreground = colors[6],
+                        foreground = mColors[4],
                         background = colors[1],
+                        padding=20
                         ),
 
                widget.TextBox(
                        text = '',
                        background = colors[1],
-                       foreground = colors[3],
+                       foreground = mColors[1],
                        padding = 0,
                        fontsize = 37
                        ),
                widget.CurrentLayoutIcon(
                        custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-                       foreground = colors[5],
-                       background = colors[3],
+                       foreground = mColors[2],
+                       background = mColors[1],
                        padding = 0,
                        scale = 0.7
                        ),
                widget.CurrentLayout(
                       font = "Noto Sans Bold",
                       fontsize = 12,
-                      foreground = colors[5],
-                      background = colors[3]
+                      foreground = mColors[2],
+                      background = mColors[1]
                         ),
                widget.TextBox(
                        text = '',
-                       background = colors[3],
-                       foreground = colors[9],
+                       background = mColors[1],
+                       foreground = mColors[0],
                        padding = 0,
                        fontsize = 37
                        ),
@@ -423,30 +425,30 @@ def init_widgets_list():
                          theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
                          update_interval = 5,
                          foreground = colors[5],
-                         background = colors[9]
+                         background = mColors[0]
                          ),
                 # battery option 2  from Qtile
                 widget.Battery(
-                         font="Noto Sans",
+                         font="Noto Sans Bold",
                          update_interval = 10,
                          fontsize = 12,
                          foreground = colors[5],
-                         background = colors[9],
+                         background = mColors[0]
                          ),
                 widget.TextBox(
                        text = '',
-                       background = colors[9],
-                       foreground = colors[3],
+                       foreground = mColors[1],
+                       background = mColors[0],
                        padding = 0,
                        fontsize = 37
                        ),
                 widget.CPU(
-                        font="Noto Sans",
+                        font="Noto Sans Bold",
                         #format = '{MemUsed}M/{MemTotal}M',
                         update_interval = 1,
                         fontsize = 12,
-                        foreground = colors[5],
-                        background = colors[3],
+                        foreground = mColors[2],
+                        background = mColors[1],
                         mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e htop')},
                        ),
 #                widget.Net(
@@ -460,8 +462,8 @@ def init_widgets_list():
 #                         ),
                 widget.TextBox(
                        text = '',
-                       background = colors[3],
-                       foreground = colors[9],
+                       background = mColors[1],
+                       foreground = mColors[0],
                        padding = 0,
                        fontsize = 37
                        ),
@@ -480,8 +482,8 @@ def init_widgets_list():
                widget.TextBox(
                         font="FontAwesome",
                         text="  ",
-                        foreground=colors[5],
-                        background=colors[9],
+                        background = mColors[0],
+                        foreground = colors[5],
                         padding = 0,
                         fontsize=16
                         ),
@@ -490,14 +492,14 @@ def init_widgets_list():
                         format = '{MemUsed}M/{MemTotal}M',
                         update_interval = 1,
                         fontsize = 12,
+                        background = mColors[0],
                         foreground = colors[5],
-                        background = colors[9],
                         mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e htop')},
                        ),
                widget.TextBox(
                        text = '',
-                       background = colors[9],
-                       foreground = colors[3],
+                       background = mColors[0],
+                       foreground = mColors[1],
                        padding = 0,
                        fontsize = 37
                        ),
@@ -505,32 +507,32 @@ def init_widgets_list():
                         font="FontAwesome",
                         text="  ",
                         foreground=colors[5],
-                        background=colors[3],
+                        background=mColors[1],
                         padding = 0,
                         fontsize=16
                         ),
                widget.Clock(
                         foreground = colors[5],
-                        background = colors[3],
+                        background = mColors[1],
                         fontsize = 12,
                         format="%Y-%m-%d %H:%M"
                         ),
                 widget.TextBox(
                        text = '',
-                       background = colors[3],
-                       foreground = colors[9],
+                       background = mColors[1],
+                       foreground = mColors[0],
                        padding = 0,
                        fontsize = 37
                        ),
 
                widget.Systray(
-                       background=colors[9],
+                       background=mColors[0],
                        icon_size=20,
                        padding = 4
                        ),
               widget.TextBox(
                         text = '',
-                        background = colors[9],
+                        background = mColors[0],
                         foreground = colors[1],
                         padding = 0,
                         fontsize = 37
