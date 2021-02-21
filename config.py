@@ -61,7 +61,6 @@ keys = [
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
-    Key([mod], "Return", lazy.spawn("xterm"), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -69,16 +68,17 @@ keys = [
 
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
+
+####    ##### launchers
+    Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
     Key([mod], "s", lazy.spawn("stacer"), desc="Launch Stacer system cleaner"),
-
-##### launchers
     Key([mod], "b", lazy.spawn("vivaldi-stable"), desc="Launch Vivaldi browser"),
-    Key([mod], "r", lazy.spawn("dmenu_run -fn '-xos4-JetBrainsMonoNL-medium-r-*-*-18-*'"),
+    Key([mod], "r", lazy.spawn("dmenu_run -fn '-xos4-JetBrainsMonoMedium-medium-r-*-*-18-*'"),
         desc="Spawn a command using a prompt widget"),
-
+#    Key([mod], "r", extension.Dmenu(dmenu_bottom=True),
 ]
 
-groups = [Group(i) for i in "1234567890"]
+groups = [Group(i) for i in "123456789"]
 
 for i in groups:
     keys.extend([
@@ -111,55 +111,55 @@ layouts = [
     # layout.Zoomy(),
 ]
 
+#extension.Dmenu(dmenu_font='JetBrainsMonoMedium Nerd Font Bold',dmenu_bottom=True)
+
 widget_defaults = dict(
-    font='JetBrainsMonoNL-Bold',
+    margin=0,
+    font='JetBrainsMonoMedium Nerd Font Bold',
     fontsize=18,
-    padding=3,
+    padding=0,
     background='000000',
-    
+    foreground='ffffff'
 )
 extension_defaults = widget_defaults.copy()
 #################################################################################
+blue='104d84'
+lblue='4e77b5'
+green='336b28'
+lgreen='77b54e'
+black='000000'
+white='ffffff'
+
 screens = [
     Screen(
        top =bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.Sep(linewidth=2),
-                widget.GroupBox(),
-                #widget.Sep(linewidth=2),
-                #widget.Prompt(),
-                widget.Sep(linewidth=2),
-                widget.WindowName(padding=15),
-                #widget.Sep(linewidth=2),
-                #widget.NetGraph(),
-                #widget.Sep(linewidth=2),
-                #widget.Wlan(),
-                widget.Sep(linewidth=2),
+                widget.TextBox(foreground=black,background=green,text='',fontsize=48,padding=0), # textbox
+                widget.CurrentLayout(background=green), # currentLayout
+                widget.CurrentLayoutIcon(background=green), # currentLayoutIcon
+                widget.TextBox(foreground=green,background=blue,text='',fontsize=48,padding=0), # textbox
+                widget.GroupBox(visible_groups='123456789',font='JetBrainsMonoMedium Nerd Font Bold',background=blue,inactive=lblue,active=lgreen,highlight_color=white), # groupBox
+                widget.TextBox(foreground=blue,text='',fontsize=48,padding=0), # textbox
+                widget.Sep(linewidth=2), # sep''
+                widget.WindowName(padding=15), # windowName
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                #widget.Sep(linewidth=2),
-                #widget.CPUGraph(),
-                #widget.Sep(linewidth=2),
-                #widget.TextBox("default config", name="default"),
-                #widget.Sep(linewidth=2),
-                #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                #widget.Sep(linewidth=2),
-                #widget.Systray(background='000000'),
-                #widget.Sep(linewidth=2),
-                #widget.Volume(),
-                widget.Sep(linewidth=2),
-                widget.Clock(format='%m-%d %a %I:%M %p',foreground='3bb9ff'),
-                widget.Sep(linewidth=2),
-                widget.QuickExit(default_text='[ X ]',background='000000'),
-                #widget.Sep(linewidth=2),
-                #widget.BatteryIcon(),
-                widget.Sep(linewidth=2),
-                widget.Battery(foreground='6aa121')
+                widget.Sep(linewidth=2), # sep''
+                widget.TextBox(text='',fontsize=48,foreground=green,padding=0),
+                widget.TextBox(text=' ',fontsize=24,background=green,foreground=white,padding=0),
+                widget.Sep(background=green,foreground=green),
+                widget.Clock(format='%a %m-%d %I:%M %p',padding=0,background=green), # clock
+                widget.TextBox(text='',fontsize=48,foreground=blue,background=green,padding=0),
+                widget.QuickExit(default_text='[ X ]',background=blue), # quickExit
+                widget.TextBox(text='',fontsize=48,foreground=green,background=blue,padding=0),
+                widget.Battery(background=green,padding=2), # battery
+                widget.TextBox(text='',fontsize=48,foreground=black,background=green,padding=0),
+                #widget.BatteryIcon(background=green),
+                widget.Systray()
             ],
             24,
         ),
