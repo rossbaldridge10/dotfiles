@@ -64,7 +64,7 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "x", lazy.window.kill(), desc="Kill focused window"),
 
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
@@ -115,7 +115,7 @@ layouts = [
 
 widget_defaults = dict(
     margin=0,
-    font='JetBrainsMonoMedium Nerd Font Bold',
+    font='UbuntuMono Nerd Font',
     fontsize=18,
     padding=0,
     background='000000',
@@ -134,30 +134,32 @@ screens = [
     Screen(
        top =bar.Bar(
             [
-                widget.TextBox(foreground=black,background=green,text='',fontsize=48,padding=0), # textbox
-                widget.CurrentLayout(background=green), # currentLayout
-                widget.CurrentLayoutIcon(background=green), # currentLayoutIcon
-                widget.TextBox(foreground=green,background=blue,text='',fontsize=48,padding=0), # textbox
-                widget.GroupBox(visible_groups='123456789',font='JetBrainsMonoMedium Nerd Font Bold',background=blue,inactive=lblue,active=lgreen,highlight_color=white), # groupBox
-                widget.TextBox(foreground=blue,text='',fontsize=48,padding=0), # textbox
-                widget.Sep(linewidth=2), # sep''
+#                widget.TextBox(foreground=black,background=green,text='',fontsize=48,paddin=-ng=-5),
+#                widget.CurrentLayout(background=green), # currentLayout
+                widget.CurrentLayoutIcon(padding=3,background=green), # currentLayoutIcon
+                widget.Sep(), # sep''
+#                widget.TextBox(foreground=green,background=blue,text='',fontsize=48,padding=0, #),
+                widget.GroupBox(visible_groups='123456789',background=blue,inactive=lblue,active=lgreen,highlight_color=white), # groupBox
+#                widget.TextBox(foreground=blue,text='',fontsize=48,padding=0), # textbox
+                widget.Sep(), # sep''
                 widget.WindowName(padding=15), # windowName
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.Sep(linewidth=2), # sep''
-                widget.TextBox(text='',fontsize=48,foreground=green,padding=0),
-                widget.TextBox(text=' ',fontsize=24,background=green,foreground=white,padding=0),
-                widget.Sep(background=green,foreground=green),
+#                widget.Chord(
+#                    chords_colors={
+#                        'launch': ("#ff0000", "#ffffff"),
+#                    },
+#                    name_transform=lambda name: name.upper(),
+#                ),
+                widget.Sep(), # sep''
+#                widget.TextBox(text='',fontsize=48,foreground=green,padding=0),
+#                widget.TextBox(text=' ',fontsize=24,background=green,foreground=white,padding=0),
+#                widget.Sep(background=green,foreground=green),
                 widget.Clock(format='%a %m-%d %I:%M %p',padding=0,background=green), # clock
-                widget.TextBox(text='',fontsize=48,foreground=blue,background=green,padding=0),
+                widget.Sep(), # sep''
+#                widget.TextBox(text='',fontsize=48,foreground=blue,background=green,padding=0),
                 widget.QuickExit(default_text='[ X ]',background=blue), # quickExit
-                widget.TextBox(text='',fontsize=48,foreground=green,background=blue,padding=0),
-                widget.Battery(background=green,padding=2), # battery
-                widget.TextBox(text='',fontsize=48,foreground=black,background=green,padding=0),
+#                widget.TextBox(text='',fontsize=48,foreground=green,background=blue,padding=0),
+#                widget.Battery(background=green,padding=2), # battery
+#                widget.TextBox(text='',fontsize=48,foreground=black,background=green,padding=0),
                 #widget.BatteryIcon(background=green),
                 widget.Systray()
             ],
