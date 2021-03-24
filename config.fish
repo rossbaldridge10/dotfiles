@@ -8,16 +8,11 @@ neofetch
 function fish_prompt
 		 printf '\n'
  		 powerline-shell --shell bare $status
-#                set_color 00d787
-#                printf '\n%s  %s\n' (whoami) (hostname)
-#                set_color 5fd7ff 
-#                printf '\n%s   ' (pwd)
           end
 
 # set aliases
 alias ls "exa -alh --color=always --group-directories-first"
-alias PC "sh _PyCharm.sh"
-alias cat "batcat"
+alias cat "bat"
 alias pip "pip3"
 
 # >>> conda initialize >>>

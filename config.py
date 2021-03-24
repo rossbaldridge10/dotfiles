@@ -40,18 +40,18 @@ keys = [
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "x", lazy.window.kill(), desc="Kill focused window"),
-
+    
+    # Qtile system commands
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
 
 ####    ##### launchers
-    Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
-    Key([mod], "s", lazy.spawn("stacer"), desc="Launch Stacer system cleaner"),
-    Key([mod], "b", lazy.spawn("vivaldi-stable"), desc="Launch Vivaldi browser"),
-    Key([mod], "r", lazy.spawn("dmenu_run -fn '-xos4-JetBrainsMonoMedium-medium-r-*-*-18-*'"),
+    Key([mod], "Return", lazy.spawn("alacritty"), 
+        desc="Launch terminal"),
+    Key([mod], "b", lazy.spawn("vivaldi-stable"), 
+        desc="Launch Vivaldi browser"),
+    Key([mod], "r", lazy.spawn("dmenu_run"),
         desc="Spawn a command using a prompt widget"),
-    Key([mod], "z", lazy.spawn("zoom"), desc="Launch Zoom client"),
-    Key([mod, "shift"], "s", lazy.spawn("slack"), desc="Launch Slack workspace"),
 #    Key([mod], "r", extension.Dmenu(dmenu_bottom=True),
 ]
 
@@ -63,7 +63,7 @@ for i in groups:
         Key([mod], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.name)),
 
-        # mod1 + shift + letter of group = switch to & move focused window to group
+        # mod + shift + letter of group = switch to & move focused window to group
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
             desc="Switch to & move focused window to group {}".format(i.name)),
         # Or, use below if you prefer not to switch to that group.
@@ -92,7 +92,7 @@ layouts = [
 widget_defaults = dict(
     margin=0,
     font='UbuntuMono Nerd Font Bold',
-    fontsize=18,
+    fontsize=16,
     padding=0,
     background='000000',
     foreground='ffffff'
@@ -110,13 +110,14 @@ screens = [
     Screen(
        top =bar.Bar(
             [
-                widget.TextBox(foreground=black,background=green,text='',fontsize=56,padding=-6), # textbox
+                widget.TextBox(foreground=black,background=green,text='',fontsize=48,padding=-6), # textbox
                 #widget.CurrentLayout(background=green), # currentLayout
                 widget.CurrentLayoutIcon(background=green,padding=7), # currentLayoutIcon
-                widget.TextBox(foreground=green,background=blue,text='',fontsize=56,padding=-6), # textbox
-                widget.GroupBox(visible_groups='123456789',font='UbuntuMono Nerd Font Bold',background=blue,inactive=lblue,active=lgreen), # groupBox
-                widget.TextBox(foreground=blue,text='',fontsize=56,padding=-6), # textbox
-                widget.WindowName(padding=15), # windowName
+                widget.TextBox(foreground=green,background=blue,text='',fontsize=48,padding=-6), # textbox
+                widget.GroupBox(visible_groups='123456789',background=blue,inactive=lblue,active=lgreen,
+                    this_current_screen_border='c0c0c0'), # groupBox
+                widget.TextBox(foreground=blue,text='',fontsize=48,padding=-6), # textbox
+                widget.WindowName(padding=10), # windowName
                 #widget.Chord(
                     #chords_colors={
                         #'launch': ("#ff0000", "#ffffff"),
@@ -124,17 +125,16 @@ screens = [
                     #name_transform=lambda name: name.upper(),
                 #),
                 #widget.Wlan(),
-                widget.TextBox(text='',fontsize=56,background=black,foreground=green,padding=-6),
-                widget.TextBox(text=' ',fontsize=24,background=green,foreground=white,padding=0),
-                widget.Clock(format='%m-%d %I:%M',padding=5,background=green), # clock
-                widget.TextBox(text='',fontsize=56,foreground=blue,background=green,padding=-6),
-                widget.QuickExit(default_text='[ X ]',padding=7,background=blue), # quickExit
-                widget.TextBox(text='',fontsize=56,foreground=green,background=blue,padding=-6),
-                widget.BatteryIcon(background=green),
-                widget.Battery(background=green,padding=5), # battery
-                widget.TextBox(text='',fontsize=56,foreground=black,background=green,padding=-6),
-                #widget.BatteryIcon(background=green),
-                widget.Systray()
+                widget.TextBox(text='',fontsize=48,background=black,foreground=blue,padding=-6),
+                widget.TextBox(text=' ',fontsize=18,background=blue,foreground=white,padding=0),
+                widget.Clock(format='%m-%d %I:%M',padding=5,background=blue), # clock
+                widget.TextBox(text='',fontsize=48,foreground=green,background=blue,padding=-6),
+                widget.BatteryIcon(background=green,padding=5),
+#                widget.Battery(background=green,padding=5), # battery
+                widget.TextBox(text='',fontsize=48,foreground=blue,background=green,padding=-6),
+                widget.QuickExit(default_text='[X]',padding=7,background=blue), # quickExit
+                widget.TextBox(text='',fontsize=48,foreground=black,background=blue,padding=-6),
+                #widget.Systray()
             ],
             24,
         ),
