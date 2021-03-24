@@ -110,13 +110,13 @@ screens = [
     Screen(
        top =bar.Bar(
             [
-                widget.TextBox(foreground=black,background=green,text='',fontsize=48,padding=-6), # textbox
+                widget.TextBox(foreground=black,background=green,text='',fontsize=48,padding=-3), # textbox
                 #widget.CurrentLayout(background=green), # currentLayout
                 widget.CurrentLayoutIcon(background=green,padding=7), # currentLayoutIcon
-                widget.TextBox(foreground=green,background=blue,text='',fontsize=48,padding=-6), # textbox
+                widget.TextBox(foreground=green,background=blue,text='',fontsize=48,padding=-3), # textbox
                 widget.GroupBox(visible_groups='123456789',background=blue,inactive=lblue,active=lgreen,
                     this_current_screen_border='c0c0c0'), # groupBox
-                widget.TextBox(foreground=blue,text='',fontsize=48,padding=-6), # textbox
+                widget.TextBox(foreground=blue,text='',fontsize=48,padding=-3), # textbox
                 widget.WindowName(padding=10), # windowName
                 #widget.Chord(
                     #chords_colors={
@@ -125,15 +125,15 @@ screens = [
                     #name_transform=lambda name: name.upper(),
                 #),
                 #widget.Wlan(),
-                widget.TextBox(text='',fontsize=48,background=black,foreground=blue,padding=-6),
+                widget.TextBox(text='',fontsize=48,background=black,foreground=blue,padding=-3),
                 widget.TextBox(text=' ',fontsize=18,background=blue,foreground=white,padding=0),
                 widget.Clock(format='%m-%d %I:%M',padding=5,background=blue), # clock
-                widget.TextBox(text='',fontsize=48,foreground=green,background=blue,padding=-6),
+                widget.TextBox(text='',fontsize=48,foreground=green,background=blue,padding=-3),
                 widget.BatteryIcon(background=green,padding=5),
 #                widget.Battery(background=green,padding=5), # battery
-                widget.TextBox(text='',fontsize=48,foreground=blue,background=green,padding=-6),
+                widget.TextBox(text='',fontsize=48,foreground=blue,background=green,padding=-3),
                 widget.QuickExit(default_text='[X]',padding=7,background=blue), # quickExit
-                widget.TextBox(text='',fontsize=48,foreground=black,background=blue,padding=-6),
+                widget.TextBox(text='',fontsize=48,foreground=black,background=blue,padding=-3),
                 #widget.Systray()
             ],
             24,
