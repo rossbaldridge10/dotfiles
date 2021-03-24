@@ -15,8 +15,9 @@ alias ls "exa -alh --color=always --group-directories-first"
 alias cat "bat"
 alias pip "pip3"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-#eval /home/rossb/anaconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
+# git
+alias gAdd "git add -A"
+alias gCommit "git commit -m"
+alias gPush "git push"
+alias gClone "git clone"
 
