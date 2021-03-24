@@ -1,28 +1,3 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
 
 from typing import List  # noqa: F401
 
@@ -75,6 +50,8 @@ keys = [
     Key([mod], "b", lazy.spawn("vivaldi-stable"), desc="Launch Vivaldi browser"),
     Key([mod], "r", lazy.spawn("dmenu_run -fn '-xos4-JetBrainsMonoMedium-medium-r-*-*-18-*'"),
         desc="Spawn a command using a prompt widget"),
+    Key([mod], "z", lazy.spawn("zoom"), desc="Launch Zoom client"),
+    Key([mod, "shift"], "s", lazy.spawn("slack"), desc="Launch Slack workspace"),
 #    Key([mod], "r", extension.Dmenu(dmenu_bottom=True),
 ]
 
@@ -111,11 +88,10 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-#extension.Dmenu(dmenu_font='JetBrainsMonoMedium Nerd Font Bold',dmenu_bottom=True)
 
 widget_defaults = dict(
     margin=0,
-    font='UbuntuMono Nerd Font',
+    font='UbuntuMono Nerd Font Bold',
     fontsize=18,
     padding=0,
     background='000000',
@@ -134,32 +110,29 @@ screens = [
     Screen(
        top =bar.Bar(
             [
-#                widget.TextBox(foreground=black,background=green,text='',fontsize=48,paddin=-ng=-5),
-#                widget.CurrentLayout(background=green), # currentLayout
-                widget.CurrentLayoutIcon(padding=3,background=green), # currentLayoutIcon
-                widget.Sep(), # sep''
-#                widget.TextBox(foreground=green,background=blue,text='',fontsize=48,padding=0, #),
-                widget.GroupBox(visible_groups='123456789',background=blue,inactive=lblue,active=lgreen,highlight_color=white), # groupBox
-#                widget.TextBox(foreground=blue,text='',fontsize=48,padding=0), # textbox
-                widget.Sep(), # sep''
+                widget.TextBox(foreground=black,background=green,text='',fontsize=56,padding=-6), # textbox
+                #widget.CurrentLayout(background=green), # currentLayout
+                widget.CurrentLayoutIcon(background=green,padding=7), # currentLayoutIcon
+                widget.TextBox(foreground=green,background=blue,text='',fontsize=56,padding=-6), # textbox
+                widget.GroupBox(visible_groups='123456789',font='UbuntuMono Nerd Font Bold',background=blue,inactive=lblue,active=lgreen), # groupBox
+                widget.TextBox(foreground=blue,text='',fontsize=56,padding=-6), # textbox
                 widget.WindowName(padding=15), # windowName
-#                widget.Chord(
-#                    chords_colors={
-#                        'launch': ("#ff0000", "#ffffff"),
-#                    },
-#                    name_transform=lambda name: name.upper(),
-#                ),
-                widget.Sep(), # sep''
-#                widget.TextBox(text='',fontsize=48,foreground=green,padding=0),
-#                widget.TextBox(text=' ',fontsize=24,background=green,foreground=white,padding=0),
-#                widget.Sep(background=green,foreground=green),
-                widget.Clock(format='%a %m-%d %I:%M %p',padding=0,background=green), # clock
-                widget.Sep(), # sep''
-#                widget.TextBox(text='',fontsize=48,foreground=blue,background=green,padding=0),
-                widget.QuickExit(default_text='[ X ]',background=blue), # quickExit
-#                widget.TextBox(text='',fontsize=48,foreground=green,background=blue,padding=0),
-#                widget.Battery(background=green,padding=2), # battery
-#                widget.TextBox(text='',fontsize=48,foreground=black,background=green,padding=0),
+                #widget.Chord(
+                    #chords_colors={
+                        #'launch': ("#ff0000", "#ffffff"),
+                    #},
+                    #name_transform=lambda name: name.upper(),
+                #),
+                #widget.Wlan(),
+                widget.TextBox(text='',fontsize=56,background=black,foreground=green,padding=-6),
+                widget.TextBox(text=' ',fontsize=24,background=green,foreground=white,padding=0),
+                widget.Clock(format='%m-%d %I:%M',padding=5,background=green), # clock
+                widget.TextBox(text='',fontsize=56,foreground=blue,background=green,padding=-6),
+                widget.QuickExit(default_text='[ X ]',padding=7,background=blue), # quickExit
+                widget.TextBox(text='',fontsize=56,foreground=green,background=blue,padding=-6),
+                widget.BatteryIcon(background=green),
+                widget.Battery(background=green,padding=5), # battery
+                widget.TextBox(text='',fontsize=56,foreground=black,background=green,padding=-6),
                 #widget.BatteryIcon(background=green),
                 widget.Systray()
             ],
