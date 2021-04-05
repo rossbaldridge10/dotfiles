@@ -1,5 +1,8 @@
 # dotfiles
 
-configuration files for various linux applications
+## Configuration files for various linux applications
 
-1.  qtile
+1. qtile
+a. qtile native to garuda linux
+3. zsh
+4. fish
